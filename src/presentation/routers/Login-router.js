@@ -17,6 +17,10 @@ class LoginRouter {
       return HttpReponse.badRequest('password')
     }
     this.authUseCase.auth(email, password)
+
+    return {
+      statusCode: 401
+    }
   }
 }
 
