@@ -22,7 +22,7 @@ class LoginRouter {
       return HttpReponse.unauthorizedError()
     }
 
-    return HttpReponse.ok()
+    return HttpReponse.ok({ accessToken })
   }
 }
 
