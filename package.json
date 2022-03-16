@@ -7,8 +7,9 @@
   "license": "MIT",
   "scripts": {
     "test": "jest --watch --silent --verbose --colors",
-    "test:staged": "jest --passWithNotests --findRelatedTests --silent",
-    "teste:ci": "jest --coverage"
+    "test:uni": "yarn test --watch",
+    "test:staged": "yarn test  --findRelatedTests",
+    "teste:ci": "yarn test --coverage"
   },
   "standard": {
     "env": [
