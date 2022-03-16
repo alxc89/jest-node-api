@@ -6,11 +6,13 @@
   "author": "alxc89 <alexcaardoso@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "test": "jest --watchAll",
-    "test:staged": "jest --passWithNotests"
+    "test": "jest --watch --silent --verbose --colors",
+    "test:staged": "jest --passWithNotests --findRelatedTests --silent"
   },
   "standard": {
-    "env": "jest"
+    "env": [
+      "jest"
+    ]
   },
   "devDependencies": {
     "husky": "^7.0.4",

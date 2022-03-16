@@ -30,6 +30,7 @@ class LoginRouter {
 
       return HttpReponse.ok({ accessToken })
     } catch (error) {
+      console.error(error)
       return HttpReponse.serverError()
     }
   }
