@@ -21,8 +21,8 @@ class LoginRouter {
       if (!password) {
         return HttpReponse.badRequest(new MissingParamError('password'))
       }
-      const accessToken = await this.authUseCase.auth(email, password)
 
+      const accessToken = await this.authUseCase.auth(email, password)
       if (!accessToken) {
         return HttpReponse.unauthorizedError()
       }

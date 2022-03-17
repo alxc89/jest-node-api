@@ -1,4 +1,4 @@
-const { UnauthorizedError, ServerError } = require('./errors')
+const { UnauthorizedError, ServerError } = require('./errors/index')
 
 class HttpReponse {
   static badRequest (error) {

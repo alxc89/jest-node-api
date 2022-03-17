@@ -1,8 +1,8 @@
-class UnauthorizedError extends Error {
+class ServerError extends Error {
   constructor (paramName) {
     super('Internal error')
     this.name = 'ServerError'
   }
 }
 
-module.exports = UnauthorizedError
+module.exports = ServerError
