@@ -21,7 +21,11 @@ class AuthUseCase {
       throw new InvalidParamError('loadUserByEmailRepository')
     }
 
-    await this.loadUserByEmailRepository.load(email)
+    const user = await this.loadUserByEmailRepository.load(email)
+
+    if (!user) {
+      return null
+    }
   }
 }
 
@@ -42,13 +46,13 @@ describe('Auth UseCase', () => {
   test('Should throw if no email is provided', async () => {
     const { sut } = makeSut()
     const promise = sut.auth() // retirnado o await pq o jest não suporta. Então vai receber uma promise
-    expect(promise).rejects.toThrow(new MissingParamError('email'))// pegando o rejects da promise e verificando se é uma execeção
+    expect(promise).rejects.toThrow(new MissingParamError('email'))// pegando o rejects da promise e verificando se é uma exceção
   })
 
   test('Should throw if no password is provided', async () => {
     const { sut } = makeSut()
     const promise = sut.auth('any_email@email.com') // retirnado o await pq o jest não suporta. Então vai receber uma promise
-    expect(promise).rejects.toThrow(new MissingParamError('password'))// pegando o rejects da promise e verificando se é uma execeção
+    expect(promise).rejects.toThrow(new MissingParamError('password'))// pegando o rejects da promise e verificando se é uma exceção
   })
 
   test('Should call LoadUserByEmailRepository with correct email', async () => {
@@ -68,5 +72,11 @@ describe('Auth UseCase', () => {
     const sut = new AuthUseCase({})
     const promise = sut.auth('any_email@email.com', 'any_password')
     expect(promise).rejects.toThrow(new InvalidParamError('loadUserByEmailRepository'))
+  })
+
+  test('Should return null if LoadUserByEmailRepository returns null', async () => {
+    const { sut } = makeSut()
+    const accessToken = await sut.auth('invalid_email@email.com', 'any_password')
+    expect(accessToken).toBeNull()
   })
 })
